@@ -36,5 +36,8 @@ There's a million ways, but here's a few.
 2) Generate NBA results for other game sites than fanduel.
 
 3) Build script to automatically sets the resulting lineup in Fanduel automatically (No energy needed to play!!)
+
+4) Add in NBA teams into the data set for each player, so I can remove players from a lineup if three or more are on the same team. (This happens
+with the Spurs a lot.)
   
   

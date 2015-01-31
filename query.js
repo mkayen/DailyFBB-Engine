@@ -70,9 +70,7 @@ for (var l = 0; l < proLength; l++){
 			var ratio = projectionArray[k][3]
 			completePlayer = []
 			completePlayer.push(name, position, salary, points, ratio)
-			if(points > 10){
-				omnibus.push(completePlayer)
-			}
+			omnibus.push(completePlayer)
 		}
 	}
 }
@@ -85,10 +83,8 @@ var omnibusLength = omnibus.length
 
 function positionFunc(pos, array){
 	for (var i = 0; i < omnibusLength; i++){
-		if(omnibus[i][1] == pos){
-			if(omnibus[i][4]>3){
-				array.push(omnibus[i]);
-			}
+		if(omnibus[i][1] == pos && omnibus[i][4]>3){
+			array.push(omnibus[i]);
 		}
 	}
 }
@@ -99,7 +95,7 @@ positionFunc('SF', allSF)
 positionFunc('PF', allPF)
 positionFunc('C', allC)
 
-//console.log(allPG, allSG, allSF, allPF, allC)
+// console.log(allPG, allSG, allSF, allPF, allC)
 
 // // POSITION PAIRS -----------------------------------------
 // // PAIRS UP PLAYERS AT PARTICULAR POSITION TO ACCOUNT FOR
@@ -128,7 +124,7 @@ positionPairs(allSG, sgAllPairs)
 positionPairs(allSF, sfAllPairs)
 positionPairs(allPF, pfAllPairs)
 
-
+// console.log(pgAllPairs, sgAllPairs, sfAllPairs, pfAllPairs)
 
 // // POSITION QUADS ------------------------------------------
 // // QUADS UP PLAYERS AT TWO POSITIONS.
@@ -150,7 +146,7 @@ function positionQuads(pairArray1, pairArray2, newArray){
 			if(i!=j){
 				posQuad = []
 				posQuad.push(pos1name, pos2name, pos3name, pos4name, price, points);
-				if(points > 120){
+				if(points > 120 && price > 25000 && price < 28000){
 					newArray.push(posQuad);		
 				}
 			}
@@ -161,36 +157,37 @@ function positionQuads(pairArray1, pairArray2, newArray){
 positionQuads(pgAllPairs, sgAllPairs, pgsgQuad)
 positionQuads(sfAllPairs, pfAllPairs, sfpfQuad)
 
+console.log(pgsgQuad.length, sfpfQuad.length)
+
 // // POSITION EIGHTS -----------------------------------------
 // // GENERATES TEAMS OF EIGHT. INCLUDING ALL PLAYERS OTHER THAN
 // // CENTER.
 
-function positionEights(pgsgQuad, quadArray2, newArray){
-	var length1 = pgsgQuad.length;
-	var length2 = quadArray2.length;
-	for (var j = 0; j < length1; j++){
-		var i = j + 1;
-		for (var i = 0; i < length2; i++){
-			var pos1name = pgsgQuad[j][0]
-			var pos2name = pgsgQuad[j][1]
-			var pos3name = pgsgQuad[j][2]
-			var pos4name = pgsgQuad[j][3]
-			var pos5name = quadArray2[i][0]
-			var pos6name = quadArray2[i][1]
-			var pos7name = quadArray2[i][2]
-			var pos8name = quadArray2[i][3]
-			var price = pgsgQuad[j][4] + quadArray2[i][4]
-			var points = pgsgQuad[j][5] + quadArray2[i][5]
-			if(i!=j){
-				posEight = []
-				posEight.push(pos1name, pos2name, pos3name, pos4name, pos5name, pos6name, pos7name, pos8name, price, points)
-				newArray.push(posEight)
-			}
+var length1 = pgsgQuad.length;
+var length2 = sfpfQuad.length;
+
+for (var j = 0; j < length1; j++){
+	var i = j + 1;
+	for (var i = 0; i < length2; i++){
+		var pos1name = pgsgQuad[j][0]
+		var pos2name = pgsgQuad[j][1]
+		var pos3name = pgsgQuad[j][2]
+		var pos4name = pgsgQuad[j][3]
+		var pos5name = sfpfQuad[i][0]
+		var pos6name = sfpfQuad[i][1]
+		var pos7name = sfpfQuad[i][2]
+		var pos8name = sfpfQuad[i][3]
+		var price = pgsgQuad[j][4] + sfpfQuad[i][4]
+		var points = pgsgQuad[j][5] + sfpfQuad[i][5]
+		if(i!=j){
+			posEight = []
+			posEight.push(pos1name, pos2name, pos3name, pos4name, pos5name, pos6name, pos7name, pos8name, price, points)
+			eight.push(posEight)
 		}
 	}
 }
 
-positionEights(pgsgQuad, sfpfQuad, eight)
+// console.log(eight)
 
 // // STARTING 9 ---------------------------------------------
 // // GENERATES ARRAY OF STARTING LINEUPS IN CONSIDERATION
