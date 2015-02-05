@@ -27,7 +27,6 @@ var lineups = []
 // INCLUDING: PLAYER ID, SALARY, PROJECTED POINTS
 // AND EFFICIENCY RATIO
 
-
 for (var i = 0; i < length; i++){
 	projection = []
 	var id = data["daily_projections"][i]['nba_player_id'];
@@ -47,6 +46,7 @@ for (var i = 0; i < playerLength; i++){
 		player = [];
 		var id = data["players"][i]['id'];
 		var name = data["players"][i]['name'];
+		//var team = data["players"][i]['team']
 		var position = data["players"][i]['depth_position'];
 		player.push(id, name, position);
 		playerArray.push(player);
@@ -146,6 +146,9 @@ function positionQuads(pairArray1, pairArray2, newArray){
 			if(i!=j){
 				posQuad = []
 				posQuad.push(pos1name, pos2name, pos3name, pos4name, price, points);
+				
+// Add levers for player quads in the if statement below.
+
 				if(points > 120 && price > 25000 && price < 28000){
 					newArray.push(posQuad);		
 				}
@@ -157,7 +160,7 @@ function positionQuads(pairArray1, pairArray2, newArray){
 positionQuads(pgAllPairs, sgAllPairs, pgsgQuad)
 positionQuads(sfAllPairs, pfAllPairs, sfpfQuad)
 
-console.log(pgsgQuad.length, sfpfQuad.length)
+// console.log(pgsgQuad.length, sfpfQuad.length)
 
 // // POSITION EIGHTS -----------------------------------------
 // // GENERATES TEAMS OF EIGHT. INCLUDING ALL PLAYERS OTHER THAN
@@ -187,7 +190,7 @@ for (var j = 0; j < length1; j++){
 	}
 }
 
-// console.log(eight)
+//console.log(eight)
 
 // // STARTING 9 ---------------------------------------------
 // // GENERATES ARRAY OF STARTING LINEUPS IN CONSIDERATION
