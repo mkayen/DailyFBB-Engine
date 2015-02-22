@@ -1,7 +1,7 @@
 # DailyFBB-Engine
 
 The Purpose of DailyFBB-Engine is to generate "the best lineup", or the lineup with the highest projected point output in a given day. 
-The data powering this script is from numberfire (www.numberfire.com).
+The data powering this script is from numberfire (www.numberfire.com) & swish analytics (www.swishanalytics.com).
 
 The current iteration of this script only works with numberfire data & fanduel (www.fanduel.com) pricing. Would love for collaborators to
 help broaden the scope of this project. Refer to the bottom for contribution ideas - Would appreciate the help!
@@ -21,8 +21,12 @@ Prerequisites:
 3) Once in the folder in Terminal, make sure to run numberfire.py, and write the results to output.json
 
 		python numberfire.py > output.json
+
+4) Also, you'll need to run the swish file in terminal as well:
+
+		python swish.py > outputSwish.json
 		
-4) Once the output file is updates, run query.js in terminal
+5) Once the output file is updated, run query.js in terminal
 
 		node query.js
 		
@@ -33,11 +37,10 @@ There's a million ways, but here's a few.
 
 1) Generate results for other sports
 
-2) Generate NBA results for other game sites than fanduel.
+2) Draft Kings Results
 
-3) Build script to automatically sets the resulting lineup in Fanduel automatically (No energy needed to play!!)
+3) Integrating other data sources.
 
-4) Add in NBA teams into the data set for each player, so I can remove players from a lineup if three or more are on the same team. (This happens
-with the Spurs a lot.)
+4) Transfer crawlers from python to Node (via Cheerio possibly)
   
   
