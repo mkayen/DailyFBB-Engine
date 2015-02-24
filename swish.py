@@ -8,7 +8,8 @@ page = response.read()
 soup = BeautifulSoup(page)
 
 variable = str(soup.find_all('script')[8])
-data = json.dumps(variable[425:(len(variable)-26301)], sort_keys=True, separators=(',',':'))
+
+data = json.dumps(variable[425:425+variable[425:].index(';')], sort_keys=True, separators=(',',':'))
 dataLoad = json.loads(data)
 
 print dataLoad

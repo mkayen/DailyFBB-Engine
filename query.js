@@ -22,19 +22,19 @@ var lineups = []
 
 var omnibusLength = omnibus.length
 
-function positionFunc(pos, array){
+function positionFunc(pos, array, points){
 	for (var i = 0; i < omnibusLength; i++){
-		if(omnibus[i][1] == pos && omnibus[i][7] > 25){
+		if(omnibus[i][1] == pos && omnibus[i][7] > points){
 			array.push(omnibus[i]);
 		}
 	}
 }
 
-positionFunc('PG', allPG)
-positionFunc('SG', allSG)
-positionFunc('SF', allSF)
-positionFunc('PF', allPF)
-positionFunc('C', allC)
+positionFunc('PG', allPG, 28)
+positionFunc('SG', allSG, 28)
+positionFunc('SF', allSF, 25)
+positionFunc('PF', allPF, 28)
+positionFunc('C', allC, 28)
 
 // // POSITION PAIRS -----------------------------------------
 // // PAIRS UP PLAYERS AT PARTICULAR POSITION TO ACCOUNT FOR
@@ -120,7 +120,7 @@ for (var j = 0; j < length1; j++){
 			var points = pgsgQuad[j][5] + sfpfQuad[i][5] + allC[h][3]
 			posEight = []
 			posEight.push(pos1name, pos2name, pos3name, pos4name, pos5name, pos6name, pos7name, pos8name, pos9name, price, points)
-			if(points > 270 && price <= 60000){
+			if(points > 250 && price <= 60000){
 				lineups.push(posEight)
 			}
 		}
