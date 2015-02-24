@@ -32,6 +32,10 @@ Prerequisites:
 		
 That's it.
 
+# Filters
+
+Its important to change the filters to help change the weight of your results. For instance, if you would like to consider SGs who will score 30+ fantasy points but SFs who will score 25+ fantasy points, you can change these levers by changing the third parameter for the executed functions on lines 33-37 in query.js. In a future release, I will be creating a way to change these filters from directly in the command line.
+
 # Ways to Contribute:
 There's a million ways, but here's a few. 
 
