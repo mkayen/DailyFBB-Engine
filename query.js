@@ -31,10 +31,12 @@ function positionFunc(pos, array, points){
 }
 
 positionFunc('PG', allPG, 25)
-positionFunc('SG', allSG, 30)
+positionFunc('SG', allSG, 25)
 positionFunc('SF', allSF, 25)
 positionFunc('PF', allPF, 25)
 positionFunc('C', allC, 25)
+
+
 
 // // POSITION PAIRS -----------------------------------------
 // // PAIRS UP PLAYERS AT PARTICULAR POSITION TO ACCOUNT FOR
