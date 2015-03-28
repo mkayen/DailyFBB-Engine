@@ -38,12 +38,12 @@ Its important to change the filters to help change the weight of your results. F
 # Ways to Contribute:
 There's a million ways, but here's a few. 
 
-1) Generate results for other sports
+1) Use Algorithm for other sports (Baseball, Football)
 
-2) Draft Kings Results
+2) Update Algorithm to report on Draft Kings projections
 
-3) Integrating other data sources.
+3) Adding Roto & other data sources.
 
-4) Transfer crawlers from python to Node (via Cheerio possibly)
+
   
   
