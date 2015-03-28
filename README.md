@@ -11,7 +11,6 @@ Hopefully this script can help set the best lineup without effort.
 # How to use it
 
 Prerequisites:
-	Python 
 	Node
 
 1) Download all files from this page, and make sure they are at the same level in a folder.
@@ -20,11 +19,11 @@ Prerequisites:
 
 3) Once in the folder in Terminal, make sure to run numberfire.py, and write the results to output.json
 
-		python numberfire.py > output.json
+		node numberfire.js > output.json
 
 4) Also, you'll need to run the swish file in terminal as well:
 
-		python swish.py > outputSwish.json
+		node swish.js > outputSwish.json
 		
 5) Once the output file is updated, run query.js in terminal
 
