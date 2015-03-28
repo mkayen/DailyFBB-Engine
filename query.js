@@ -16,6 +16,35 @@ var pgsgQuad = []
 var sfpfQuad = []
 var lineups = []
 
+// COUNT TEAMS IN LINEUP
+
+function countTeams(arr) {
+    var a = [], b = [], prev;
+    
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            a.push(arr[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = arr[i];
+    }
+    
+    return [a, b];
+}
+
+function throwAwayTeamsWithMultPlayers(array){
+
+	for (var i = 0; i < array.length; i++){
+		if(array[i] > 2){
+			holdingCell.push(array[i])
+		}
+	}
+
+}
+
 // // POSITION FUNCTION --------------------------------------
 // // BREAKS DOWN OMNIBUS ARRAY BY POSITION, CREATING POSITIONAL ARRAYS
 // // INCLUDING: NAME, POSITION, SALARY, POINTS, RATIO
@@ -30,12 +59,13 @@ function positionFunc(pos, array, points){
 	}
 }
 
-positionFunc('PG', allPG, 25)
-positionFunc('SG', allSG, 25)
-positionFunc('SF', allSF, 25)
-positionFunc('PF', allPF, 25)
-positionFunc('C', allC, 25)
+positionFunc('PG', allPG, 20)
+positionFunc('SG', allSG, 20)
+positionFunc('SF', allSF, 20)
+positionFunc('PF', allPF, 20)
+positionFunc('C', allC, 20)
 
+// console.log(omnibus)
 
 
 // // POSITION PAIRS -----------------------------------------
@@ -51,8 +81,10 @@ function positionPairs(origArray, newArray){
 			var pos2name = origArray[i][0]
 			var price = origArray[j][2] + origArray[i][2]
 			var points = origArray[j][7] + origArray[i][7]
+			var pos1Team = origArray[j][9]
+			var pos2Team = origArray[i][9]
 			var pairArray = []
-			pairArray.push(pos1name, pos2name, price, points)
+			pairArray.push(pos1name, pos2name, price, points, pos1Team, pos2Team)
 			if(i!=j){
 				newArray.push(pairArray)
 			}
@@ -82,8 +114,12 @@ function positionQuads(pairArray1, pairArray2, newArray){
 			var pos4name = pairArray2[i][1]
 			var price = pairArray1[j][2] + pairArray2[i][2]
 			var points = pairArray1[j][3] + pairArray2[i][3]
+			var pos1Team = pairArray1[j][4]
+			var pos2Team = pairArray1[j][5]
+			var pos3Team = pairArray2[i][4]
+			var pos4Team = pairArray2[i][5]
 			posQuad = []
-			posQuad.push(pos1name, pos2name, pos3name, pos4name, price, points);
+			posQuad.push(pos1name, pos2name, pos3name, pos4name, price, points, pos1Team, pos2Team, pos3Team, pos4Team);
 			if(i!=j){
 				newArray.push(posQuad);		
 			}
@@ -107,7 +143,7 @@ var length2 = sfpfQuad.length;
 
 for (var j = 0; j < length1; j++){
 	var i = j + 1;
-	for (var i = 0; i < length2; i++){
+	for (var i; i < length2; i++){
 		var pos1name = pgsgQuad[j][0]
 		var pos2name = pgsgQuad[j][1]
 		var pos3name = pgsgQuad[j][2]
@@ -116,13 +152,28 @@ for (var j = 0; j < length1; j++){
 		var pos6name = sfpfQuad[i][1]
 		var pos7name = sfpfQuad[i][2]
 		var pos8name = sfpfQuad[i][3]
+		var pos1Team = pgsgQuad[j][6]
+		var pos2Team = pgsgQuad[j][7]
+		var pos3Team = pgsgQuad[j][8]
+		var pos4Team = pgsgQuad[j][9]
+		var pos5Team = sfpfQuad[i][6]
+		var pos6Team = sfpfQuad[i][7]
+		var pos7Team = sfpfQuad[i][8]
+		var pos8Team = sfpfQuad[i][9]
 		for (var h = 0; h < allC.length; h++){
 			var pos9name = allC[h][0]
 			var price = pgsgQuad[j][4] + sfpfQuad[i][4] + allC[h][2]
 			var points = pgsgQuad[j][5] + sfpfQuad[i][5] + allC[h][3]
+			var pos9Team = allC[h][9]
 			posEight = []
+			teams = []
 			posEight.push(pos1name, pos2name, pos3name, pos4name, pos5name, pos6name, pos7name, pos8name, pos9name, price, points)
-			if(points > 250 && price <= 60000){
+			teams.push(pos1Team, pos2Team, pos3Team, pos4Team, pos5Team, pos6Team, pos7Team, pos8Team, pos9Team)
+			var holdingCell = []
+			countTeams(teams)
+			throwAwayTeamsWithMultPlayers(countTeams(teams)[1])
+			// console.log(countTeams(teams)[1])
+			if(points > 250 && price <= 60000 && holdingCell.length === 0){
 				lineups.push(posEight)
 			}
 		}

@@ -5,10 +5,8 @@
   "dependencies": {
     "bluebird": "^2.9.13",
     "cheerio": "^0.18.0",
-    "htmlparser": "^1.7.7",
     "promise": "^6.1.0",
     "request": "^2.53.0",
-    "urllib": "^2.3.0"
   },
   "main": "download.js",
   "devDependencies": {},

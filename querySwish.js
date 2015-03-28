@@ -10,7 +10,8 @@ var allPlayers = [];
 		var salary = parseInt(swishData[i]['fd_salary'])
 		var points = parseFloat(swishData[i]['proj_fantasy_pts_fd'])
 		var ratio = parseInt(salary / points)
-		playerArray.push(name, pos, salary, points, ratio)
+		var team = swishData[i]['team_abr']
+		playerArray.push(name, pos, salary, points, ratio, team)
 		allPlayers.push(playerArray)
 		}	
 

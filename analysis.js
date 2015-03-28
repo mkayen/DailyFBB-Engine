@@ -20,8 +20,9 @@ for (var i = 0; i < swishDataLength; i++){
 			// var diff = Math.abs(nf_points - swish_points)
 			var avg_points = (swish_points + nf_points) / 2
 			var avg_ppp = parseInt((swish_ppp + nf_ppp) / 2)
+			var team = swishData.swish[i][5]
 			if(swish_points !== 0){
-				player.push(name, pos, sal, swish_points, swish_ppp, nf_points, nf_ppp, avg_points, avg_ppp)
+				player.push(name, pos, sal, swish_points, swish_ppp, nf_points, nf_ppp, avg_points, avg_ppp, team)
 				mergedArray.push(player)
 			}
 		}
