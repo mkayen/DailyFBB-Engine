@@ -1,18 +1,19 @@
 {
-  "name": "hexo-site",
-  "version": "2.8.3",
-  "private": true,
-  "dependencies": {
-    "bluebird": "^2.9.13",
-    "cheerio": "^0.18.0",
-    "promise": "^6.1.0",
-    "request": "^2.53.0",
-  },
-  "main": "download.js",
-  "devDependencies": {},
+  "name": "dailyfbb-engine",
+  "version": "2.0.0",
+  "description": "automatically output the best daily fantasy basketball lineups",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkayen/DailyFBB-Engine.git"
+  },
+  "author": "Max Kayen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkayen/DailyFBB-Engine/issues"
+  },
+  "homepage": "https://github.com/mkayen/DailyFBB-Engine#readme"
 }
