@@ -1,11 +1,33 @@
 var rp          = require("request-promise");
 var cheerio     = require("cheerio");
 
+/*
+
+    The next step here is to scale the script so it works with any game.
+    Logic:
+        game obj - Defines Rules of Game
+        
+    Step 1 - Build out Scraping Function that takes
+             URL as input
+
+*/
 var urlObject = {
     basketballUrl:  'https://www.numberfire.com/nba/fantasy/full-fantasy-basketball-projections',
+    baseballUrl: 'https://www.numberfire.com/mlb/daily-fantasy/daily-baseball-projections'
 };
 
 var playersArray        = [];
+
+var baseball = rp(urlObject.baseballUrl)
+    .then(screenScrape)
+    .then(function(){
+        console.log('Player Data: ')
+        console.log(playersArray)
+    })
+
+console.log(baseball)
+
+// var playersArray        = [];
 var projectionsArray    = [];
 var salariesArray       = [];
 
@@ -53,35 +75,34 @@ var basketballPositions =
     [pointGuards, shootingGuards, smallForwards, powerForwards, centers];
 
 var screenScrape = function(data){
-    var $ = cheerio.load(data);
-    var playerNames = $('#projection-data .player .full').each(function(){
-        var playerObj = {};
-        var nameStr = $(this).text()
-        var posStr  = nameStr.substring(nameStr.indexOf('('), nameStr.length)
-        playerObj.id = playersArray.length
-        playerObj.playerName = nameStr.substr(0, nameStr.indexOf(' ('))
-        playerObj.position = posStr.substr(1, posStr.indexOf(',')-1)
-        playersArray.push(playerObj);
-    })
-    var projections = $('.col-fp').each(function(){
-        var projectionObj = {}
-        projectionObj.id = projectionsArray.length
-        projectionObj.projection = $(this).text()
-        projectionsArray.push(projectionObj);
-    })
-    var salaries = $('.col-salary').each(function(){
-        var salaryObj = {}
-        salaryObj.id = projectionsArray.length
-        salaryObj.salary = $(this).text()
-        salariesArray.push(salaryObj);
-    })
-    playersArray.map(function(obj){
-        obj.projection  = projectionsArray[obj.id].projection
-        obj.salary      = salariesArray[obj.id].salary
-    })
-    return playersArray
-
-};
+	var $ = cheerio.load(data);
+	var names = []
+	var pos   = []
+	var cost  = []
+	var proj  = []
+	$('span.player-info a.full').each(function(){
+		names.push($(this).text().trim())
+	})
+	$('span.player-info--position').each(function(){
+		pos.push($(this).text())
+	})
+	$('.cost').each(function(){
+		cost.push($(this).text().trim())
+	})
+	$('.fp').each(function(){
+		proj.push($(this).text().trim())
+	})
+	for(i=0; i<names.length; i++){
+		playerObj = {};
+		playerObj.id = i + 1;
+		playerObj.playerName = names[i];
+		playerObj.position 	 = pos[i];
+		playerObj.projection = proj[i];
+		playerObj.salary     = cost[i].substring(1,cost[i].length);
+		playersArray.push(playerObj);
+	}
+	return playersArray
+}
 
 var groupByPosition = function(data, pos){
     var count = data.length;
@@ -91,7 +112,7 @@ var groupByPosition = function(data, pos){
            player.push(data[i].playerName)
            player.push(data[i].position)
            player.push(parseFloat(data[i].projection))
-           player.push(parseFloat(data[i].salary.substr(1,data[i].salary.length)))
+           player.push(parseFloat(data[i].salary.replace(/\,/g,"")))
            pos.arr.push(player)
         }
     }
