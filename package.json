@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/mkayen/DailyFBB-Engine/issues"
   },
-  "homepage": "https://github.com/mkayen/DailyFBB-Engine#readme"
+  "homepage": "https://github.com/mkayen/DailyFBB-Engine#readme",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "request-promise": "^4.1.1"
+  }
 }
